@@ -27,7 +27,7 @@ protected:
     
     void setupMenus();
     void setupTouchHandling();
-    void clear(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void clearPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };
 
 #endif /* defined(__Doodler__DrawingCanvas__) */

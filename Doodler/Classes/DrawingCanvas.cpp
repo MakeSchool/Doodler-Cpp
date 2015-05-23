@@ -49,7 +49,7 @@ void DrawingCanvas::setupMenus()
     clearButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
     clearButton->setTouchEnabled(true);
     clearButton->loadTextures("CloseNormal.png", "CloseSelected.png");
-    clearButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::clear, this));
+    clearButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::clearPressed, this));
     this->addChild(clearButton);
 }
 
@@ -91,7 +91,7 @@ void DrawingCanvas::setupTouchHandling()
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 }
 
-void DrawingCanvas::clear(Ref* pSender, ui::Widget::TouchEventType eEventType)
+void DrawingCanvas::clearPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
