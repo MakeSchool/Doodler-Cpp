@@ -62,6 +62,8 @@
 		65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
 		65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
 		65A71D601B1035F300B5E61E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D5F1B1035F200B5E61E /* GameKit.framework */; };
+		65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
+		65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -157,6 +159,8 @@
 		65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingCanvas.cpp; sourceTree = "<group>"; };
 		65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCanvas.h; sourceTree = "<group>"; };
 		65A71D5F1B1035F200B5E61E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
+		65A71D611B10369D00B5E61E /* Lobby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lobby.cpp; sourceTree = "<group>"; };
+		65A71D621B10369D00B5E61E /* Lobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lobby.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -303,6 +307,8 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */,
 				65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */,
+				65A71D611B10369D00B5E61E /* Lobby.cpp */,
+				65A71D621B10369D00B5E61E /* Lobby.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -510,6 +516,7 @@
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
@@ -523,6 +530,7 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
