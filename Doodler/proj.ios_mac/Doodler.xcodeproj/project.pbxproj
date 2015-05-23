@@ -64,6 +64,12 @@
 		65A71D601B1035F300B5E61E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D5F1B1035F200B5E61E /* GameKit.framework */; };
 		65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
 		65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
+		65A71D6C1B1043E400B5E61E /* GameKitHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D661B1043E400B5E61E /* GameKitHelper.mm */; };
+		65A71D6D1B1043E400B5E61E /* GameKitHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D661B1043E400B5E61E /* GameKitHelper.mm */; };
+		65A71D6E1B1043E400B5E61E /* GKHDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D681B1043E400B5E61E /* GKHDelegate.cpp */; };
+		65A71D6F1B1043E400B5E61E /* GKHDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D681B1043E400B5E61E /* GKHDelegate.cpp */; };
+		65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
+		65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -161,6 +167,13 @@
 		65A71D5F1B1035F200B5E61E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		65A71D611B10369D00B5E61E /* Lobby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lobby.cpp; sourceTree = "<group>"; };
 		65A71D621B10369D00B5E61E /* Lobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lobby.h; sourceTree = "<group>"; };
+		65A71D651B1043E400B5E61E /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
+		65A71D661B1043E400B5E61E /* GameKitHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameKitHelper.mm; sourceTree = "<group>"; };
+		65A71D671B1043E400B5E61E /* GKCppAlternatives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCppAlternatives.h; sourceTree = "<group>"; };
+		65A71D681B1043E400B5E61E /* GKHDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GKHDelegate.cpp; sourceTree = "<group>"; };
+		65A71D691B1043E400B5E61E /* GKHDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKHDelegate.h; sourceTree = "<group>"; };
+		65A71D6A1B1043E400B5E61E /* GKHWrapperCpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKHWrapperCpp.h; sourceTree = "<group>"; };
+		65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GKHWrapperCpp.mm; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -309,6 +322,7 @@
 				65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */,
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
+				65A71D721B1043EA00B5E61E /* GameKitHelper */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -360,6 +374,20 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		65A71D721B1043EA00B5E61E /* GameKitHelper */ = {
+			isa = PBXGroup;
+			children = (
+				65A71D651B1043E400B5E61E /* GameKitHelper.h */,
+				65A71D661B1043E400B5E61E /* GameKitHelper.mm */,
+				65A71D671B1043E400B5E61E /* GKCppAlternatives.h */,
+				65A71D691B1043E400B5E61E /* GKHDelegate.h */,
+				65A71D681B1043E400B5E61E /* GKHDelegate.cpp */,
+				65A71D6A1B1043E400B5E61E /* GKHWrapperCpp.h */,
+				65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */,
+			);
+			name = GameKitHelper;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -512,8 +540,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				65A71D6E1B1043E400B5E61E /* GKHDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				65A71D6C1B1043E400B5E61E /* GameKitHelper.mm in Sources */,
 				65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */,
@@ -528,8 +559,11 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				65A71D6D1B1043E400B5E61E /* GameKitHelper.mm in Sources */,
+				65A71D6F1B1043E400B5E61E /* GKHDelegate.cpp in Sources */,
 				65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
