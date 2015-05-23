@@ -62,7 +62,6 @@ void DrawingCanvas::setupTouchHandling()
         float distance = lastTouchPos.distance(touchPos);
         
         float radius = MIN(24.0f, distance);
-        radius = MAX(radius, 5.0f);
         
         //lowpass filter
         float dt = 1.0f / 60.0f;
