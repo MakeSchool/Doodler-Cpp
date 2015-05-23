@@ -7,7 +7,6 @@
 //
 
 #include "DrawingCanvas.h"
-#include "CocosGUI.h"
 
 using namespace cocos2d;
 
@@ -37,7 +36,21 @@ void DrawingCanvas::onEnter()
     drawNode->setContentSize(visibleSize);
     background->setContentSize(visibleSize);
     
+    this->setupMenus();
     this->setupTouchHandling();
+}
+
+void DrawingCanvas::setupMenus()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    ui::Button* clearButton = ui::Button::create();
+    clearButton->setAnchorPoint(Vec2(1.0f, 1.0f));
+    clearButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
+    clearButton->setTouchEnabled(true);
+    clearButton->loadTextures("CloseNormal.png", "CloseSelected.png");
+    clearButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::clear, this));
+    this->addChild(clearButton);
 }
 
 void DrawingCanvas::setupTouchHandling()
@@ -76,4 +89,12 @@ void DrawingCanvas::setupTouchHandling()
     };
     
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
+void DrawingCanvas::clear(Ref* pSender, ui::Widget::TouchEventType eEventType)
+{
+    if (eEventType == ui::Widget::TouchEventType::ENDED)
+    {
+        drawNode->clear();
+    }
 }
