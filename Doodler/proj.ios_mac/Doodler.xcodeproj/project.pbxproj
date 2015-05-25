@@ -70,6 +70,10 @@
 		65A71D6F1B1043E400B5E61E /* GKHDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D681B1043E400B5E61E /* GKHDelegate.cpp */; };
 		65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
 		65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
+		65A71D751B13015800B5E61E /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* Networking.m */; };
+		65A71D771B1301B900B5E61E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */; };
+		65A71D791B1301C300B5E61E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */; };
+		65A71D7A1B1301FD00B5E61E /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* Networking.m */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -174,6 +178,10 @@
 		65A71D691B1043E400B5E61E /* GKHDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKHDelegate.h; sourceTree = "<group>"; };
 		65A71D6A1B1043E400B5E61E /* GKHWrapperCpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKHWrapperCpp.h; sourceTree = "<group>"; };
 		65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GKHWrapperCpp.mm; sourceTree = "<group>"; };
+		65A71D731B13015800B5E61E /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		65A71D741B13015800B5E61E /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
+		65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -189,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A71D771B1301B900B5E61E /* MultipeerConnectivity.framework in Frameworks */,
 				52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
@@ -209,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A71D791B1301C300B5E61E /* MultipeerConnectivity.framework in Frameworks */,
 				1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */,
 				5087E76717EB910900C73F5D /* libz.dylib in Frameworks */,
 				8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */,
@@ -276,6 +286,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */,
+				65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */,
 				65A71D5F1B1035F200B5E61E /* GameKit.framework */,
 				8262943D1AAF051F00CB7CF7 /* Security.framework */,
 				52B47A461A53D09B004E4C60 /* Security.framework */,
@@ -323,6 +335,8 @@
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
 				65A71D721B1043EA00B5E61E /* GameKitHelper */,
+				65A71D731B13015800B5E61E /* Networking.h */,
+				65A71D741B13015800B5E61E /* Networking.m */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -540,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A71D751B13015800B5E61E /* Networking.m in Sources */,
 				65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				65A71D6E1B1043E400B5E61E /* GKHDelegate.cpp in Sources */,
@@ -565,6 +580,7 @@
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */,
+				65A71D7A1B1301FD00B5E61E /* Networking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
