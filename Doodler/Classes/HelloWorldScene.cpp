@@ -1,5 +1,5 @@
 #include "HelloWorldScene.h"
-#include "DrawingCanvas.h"
+#include "Lobby.h"
 
 USING_NS_CC;
 
@@ -28,12 +28,12 @@ bool HelloWorld::init()
         return false;
     }
     
-    DrawingCanvas* drawingCanvas = DrawingCanvas::create();
+    Lobby* lobby = Lobby::create();
     
-    drawingCanvas->setAnchorPoint(Vec2(0.0f, 0.0f));
-    drawingCanvas->setPosition(Vec2(0.0f, 0.0f));
+    lobby->setAnchorPoint(Vec2(0.0f, 0.0f));
+    lobby->setPosition(Vec2(0.0f, 0.0f));
     
-    this->addChild(drawingCanvas);
+    this->addChild(lobby);
     
     return true;
 }

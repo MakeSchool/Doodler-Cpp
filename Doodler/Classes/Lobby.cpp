@@ -38,6 +38,7 @@ void Lobby::setupMenu()
     findMatchButton->loadTextures("CloseNormal.png", "CloseSelected.png");
     findMatchButton->addTouchEventListener(CC_CALLBACK_2(Lobby::findMatchPressed, this));
     
+    this->addChild(findMatchButton);    
 }
 
 void Lobby::findMatchPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
