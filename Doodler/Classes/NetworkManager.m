@@ -6,9 +6,9 @@
 //
 //
 
-#import "Networking.h"
+#import "NetworkManager.h"
 
-@interface Networking ()
+@interface NetworkManager ()
 
 @property (nonatomic, strong) MCSession* session;
 @property (nonatomic, strong) MCNearbyServiceAdvertiser* advertiser;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation Networking
+@implementation NetworkManager
 
 - (instancetype)init
 {

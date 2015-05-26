@@ -9,7 +9,7 @@
 #ifndef __Doodler__NetworkingWrapper__
 #define __Doodler__NetworkingWrapper__
 
-#import "Networking.h"
+#import "NetworkManager.h"
 
 // Classes that want to be notified of
 class NetworkingDelegate
@@ -23,7 +23,7 @@ public:
     static NetworkingWrapper* getInstance();
     
 private:
-    Networking* networkManager;
+    NetworkManager* networkManager;
 };
 
 #endif /* defined(__Doodler__NetworkingWrapper__) */
