@@ -70,10 +70,10 @@
 		65A71D6F1B1043E400B5E61E /* GKHDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D681B1043E400B5E61E /* GKHDelegate.cpp */; };
 		65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
 		65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */; };
-		65A71D751B13015800B5E61E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.m */; };
+		65A71D751B13015800B5E61E /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.mm */; };
 		65A71D771B1301B900B5E61E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */; };
 		65A71D791B1301C300B5E61E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */; };
-		65A71D7A1B1301FD00B5E61E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.m */; };
+		65A71D7A1B1301FD00B5E61E /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.mm */; };
 		65A71D7D1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */; };
 		65A71D7E1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
@@ -181,11 +181,12 @@
 		65A71D6A1B1043E400B5E61E /* GKHWrapperCpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKHWrapperCpp.h; sourceTree = "<group>"; };
 		65A71D6B1B1043E400B5E61E /* GKHWrapperCpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GKHWrapperCpp.mm; sourceTree = "<group>"; };
 		65A71D731B13015800B5E61E /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
-		65A71D741B13015800B5E61E /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		65A71D741B13015800B5E61E /* NetworkManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager.mm; sourceTree = "<group>"; };
 		65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkingWrapper.mm; sourceTree = "<group>"; };
 		65A71D7C1B13A27600B5E61E /* NetworkingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingWrapper.h; sourceTree = "<group>"; };
+		65A71D801B151C5600B5E61E /* NetworkManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManagerDelegate.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -339,10 +340,11 @@
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
 				65A71D721B1043EA00B5E61E /* GameKitHelper */,
+				65A71D801B151C5600B5E61E /* NetworkManagerDelegate.h */,
 				65A71D731B13015800B5E61E /* NetworkManager.h */,
-				65A71D741B13015800B5E61E /* NetworkManager.m */,
-				65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */,
+				65A71D741B13015800B5E61E /* NetworkManager.mm */,
 				65A71D7C1B13A27600B5E61E /* NetworkingWrapper.h */,
+				65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -560,7 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A71D751B13015800B5E61E /* NetworkManager.m in Sources */,
+				65A71D751B13015800B5E61E /* NetworkManager.mm in Sources */,
 				65A71D701B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				65A71D6E1B1043E400B5E61E /* GKHDelegate.cpp in Sources */,
@@ -588,7 +590,7 @@
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				65A71D711B1043E400B5E61E /* GKHWrapperCpp.mm in Sources */,
 				65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */,
-				65A71D7A1B1301FD00B5E61E /* NetworkManager.m in Sources */,
+				65A71D7A1B1301FD00B5E61E /* NetworkManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

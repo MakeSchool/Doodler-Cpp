@@ -11,8 +11,9 @@
 
 #include "cocos2d.h"
 #include "CocosGUI.h"
+#include "NetworkingWrapper.h"
 
-class Lobby : public cocos2d::Node
+class Lobby : public cocos2d::Node, NetworkingDelegate
 {
 public:
     CREATE_FUNC(Lobby);
@@ -24,6 +25,10 @@ public:
     void setupMenu();
     
 private:
+    cocos2d::ui::Text* connectionLabel;
+    
+    void receivedData(const void* data);
+    void stateChanged(ConnectionState state);
     
     void findMatchPressed(Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };

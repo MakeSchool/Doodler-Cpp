@@ -1,5 +1,5 @@
 //
-//  Networking.m
+//  NetworkManager.m
 //  Doodler
 //
 //  Created by Daniel Haaser on 5/25/15.
@@ -7,6 +7,7 @@
 //
 
 #import "NetworkManager.h"
+#include "NetworkManagerDelegate.h"
 
 @interface NetworkManager ()
 
@@ -18,6 +19,9 @@
 @end
 
 @implementation NetworkManager
+{
+    NetworkManagerDelegate* _delegate;
+}
 
 - (instancetype)init
 {
@@ -36,8 +40,17 @@
     return self;
 }
 
+- (void)setDelegate:(NetworkManagerDelegate*)p_delegate
+{
+    _delegate = p_delegate;
+}
+
 - (void)attemptToJoinGame
 {
+#ifdef COCOS2D_DEBUG
+    NSLog(@"%@ attempting to join game", [UIDevice currentDevice].name);
+#endif
+    
     [self.advertiser startAdvertisingPeer];
     [self.browser startBrowsingForPeers];
 }
@@ -55,6 +68,10 @@
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler
 {
     invitationHandler(YES, self.session);
+    
+#ifdef COCOS2D_DEBUG
+    NSLog(@"%@ accepted connection from %@", [UIDevice currentDevice].name, peerID.displayName);
+#endif
 }
 
 #pragma mark -
@@ -63,10 +80,18 @@
 // Found a nearby advertising peer
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {
+#ifdef COCOS2D_DEBUG
+    NSLog(@"%@ found peer: %@", [UIDevice currentDevice].name, peerID.displayName);
+#endif
+    
     // Only send invitations one way, so both peers don't try to invite each other at the same time
     if ([peerID.displayName compare:self.peerID.displayName] == NSOrderedAscending)
     {
         [browser invitePeer:peerID toSession:self.session withContext:nil timeout:10.0f];
+        
+#ifdef COCOS2D_DEBUG
+        NSLog(@"%@ invited peer: %@", [UIDevice currentDevice].name, peerID.displayName);
+#endif
     }
 }
 
@@ -82,13 +107,52 @@
 // Remote peer changed state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
+    ConnectionState changedState;
+    NSString* stateString = @"";
     
+    switch (state)
+    {
+        case MCSessionStateConnected:
+            changedState = ConnectionState::CONNECTED;
+            stateString = @"connected to";
+            break;
+            
+        case MCSessionStateConnecting:
+            changedState = ConnectionState::CONNECTING;
+            stateString = @"connecting to";
+            break;
+            
+        case MCSessionStateNotConnected:
+            changedState = ConnectionState::NOT_CONNECTED;
+            stateString = @"not connected to";
+            break;
+    }
+    
+#ifdef COCOS2D_DEBUG
+    NSLog(@"%@ changed state: %@ %@", [UIDevice currentDevice].name, stateString, peerID.displayName);
+#endif
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate)
+        {
+            _delegate->stateChanged(changedState);
+        }
+    });
 }
 
 // Received data from remote peer
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
-
+#ifdef COCOS2D_DEBUG
+    NSLog(@"%@ received data from %@", [UIDevice currentDevice].name, peerID.displayName);
+#endif
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_delegate)
+        {
+            _delegate->receivedData(data.bytes);
+        }
+    });
 }
 
 // Received a byte stream from remote peer
