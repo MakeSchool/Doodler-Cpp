@@ -9,6 +9,12 @@
 #import "NetworkManager.h"
 #include "NetworkManagerDelegate.h"
 
+#ifdef COCOS2D_DEBUG
+    #define NMLog(format, ...) NSLog(format, ##__VA_ARGS__)
+#else
+    #define NMLog(...) do {} while (0)
+#endif
+
 @interface NetworkManager ()
 
 @property (nonatomic, strong) MCSession* session;
@@ -27,14 +33,7 @@
 {
     if (self = [super init])
     {
-        self.peerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
-        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.peerID discoveryInfo:nil serviceType:@"doodler-game"];
-        self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:self.peerID serviceType:@"doodler-game"];
-        self.session = [[MCSession alloc] initWithPeer:self.peerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
-        
-        self.advertiser.delegate = self;
-        self.browser.delegate = self;
-        self.session.delegate = self;
+
     }
     
     return self;
@@ -47,12 +46,33 @@
 
 - (void)attemptToJoinGame
 {
-#ifdef COCOS2D_DEBUG
-    NSLog(@"%@ attempting to join game", [UIDevice currentDevice].name);
-#endif
+    NMLog(@"%@ attempting to join game", [UIDevice currentDevice].name);
+    
+    self.peerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
+    self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.peerID discoveryInfo:nil serviceType:@"doodler-game"];
+    self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:self.peerID serviceType:@"doodler-game"];
+    self.session = [[MCSession alloc] initWithPeer:self.peerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
+    
+    self.advertiser.delegate = self;
+    self.browser.delegate = self;
+    self.session.delegate = self;
     
     [self.advertiser startAdvertisingPeer];
     [self.browser startBrowsingForPeers];
+}
+
+- (void)disconnect
+{
+    [self.session disconnect];
+    
+    self.advertiser.delegate = nil;
+    self.browser.delegate = nil;
+    self.session.delegate = nil;
+    
+    self.peerID = nil;
+    self.advertiser = nil;
+    self.browser = nil;
+    self.session = nil;
 }
 
 - (void)sendData:(NSData*)data
@@ -68,10 +88,8 @@
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler
 {
     invitationHandler(YES, self.session);
-    
-#ifdef COCOS2D_DEBUG
-    NSLog(@"%@ accepted connection from %@", [UIDevice currentDevice].name, peerID.displayName);
-#endif
+ 
+    NMLog(@"%@ accepted connection from %@", [UIDevice currentDevice].name, peerID.displayName);
 }
 
 #pragma mark -
@@ -80,18 +98,14 @@
 // Found a nearby advertising peer
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {
-#ifdef COCOS2D_DEBUG
-    NSLog(@"%@ found peer: %@", [UIDevice currentDevice].name, peerID.displayName);
-#endif
+    NMLog(@"%@ found peer: %@", [UIDevice currentDevice].name, peerID.displayName);
     
     // Only send invitations one way, so both peers don't try to invite each other at the same time
     if ([peerID.displayName compare:self.peerID.displayName] == NSOrderedAscending)
     {
         [browser invitePeer:peerID toSession:self.session withContext:nil timeout:10.0f];
         
-#ifdef COCOS2D_DEBUG
-        NSLog(@"%@ invited peer: %@", [UIDevice currentDevice].name, peerID.displayName);
-#endif
+        NMLog(@"%@ invited peer: %@", [UIDevice currentDevice].name, peerID.displayName);
     }
 }
 
@@ -125,12 +139,14 @@
         case MCSessionStateNotConnected:
             changedState = ConnectionState::NOT_CONNECTED;
             stateString = @"not connected to";
+            // Auto rejoin?
+            
+            [self disconnect];
+            [self attemptToJoinGame];
             break;
     }
     
-#ifdef COCOS2D_DEBUG
-    NSLog(@"%@ changed state: %@ %@", [UIDevice currentDevice].name, stateString, peerID.displayName);
-#endif
+    NMLog(@"%@ changed state: %@ %@", [UIDevice currentDevice].name, stateString, peerID.displayName);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate)
@@ -143,9 +159,7 @@
 // Received data from remote peer
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
-#ifdef COCOS2D_DEBUG
-    NSLog(@"%@ received data from %@", [UIDevice currentDevice].name, peerID.displayName);
-#endif
+    NMLog(@"%@ received data from %@", [UIDevice currentDevice].name, peerID.displayName);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate)
