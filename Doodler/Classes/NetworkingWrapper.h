@@ -35,6 +35,8 @@ public:
     
     void attemptToJoinGame();
     
+    void sendData(const void* data, unsigned long length);
+    
 private:
     NetworkManager* networkManager;
     NetworkingDelegate* delegate;

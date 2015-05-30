@@ -19,4 +19,6 @@ class NetworkManagerDelegate;
 
 - (void)attemptToJoinGame;
 
+- (void)sendData:(NSData*)data;
+
 @end

@@ -50,6 +50,12 @@ void NetworkingWrapper::attemptToJoinGame()
     [this->networkManager attemptToJoinGame];
 }
 
+void NetworkingWrapper::sendData(const void *data, unsigned long length)
+{
+    NSData* dataToSend = [NSData dataWithBytes:data length:length];
+    [this->networkManager sendData:dataToSend];
+}
+
 #pragma mark -
 #pragma mark NetworkManager Delegate Methods
 

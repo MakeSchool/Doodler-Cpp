@@ -11,8 +11,9 @@
 
 #include "cocos2d.h"
 #include "CocosGUI.h"
+#include "NetworkingWrapper.h"
 
-class DrawingCanvas : public cocos2d::Node
+class DrawingCanvas : public cocos2d::Node//, NetworkingDelegate
 {
 public:
     CREATE_FUNC(DrawingCanvas);
@@ -28,6 +29,11 @@ protected:
     void setupMenus();
     void setupTouchHandling();
     void clearPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void sendStrokeOverNetwork(cocos2d::Vec2 startPoint, cocos2d::Vec2 endPoint, float radius, cocos2d::Color4F color);
+    
+    // NetworkingWrapper Methods
+    void receivedData(const void* data);
+    void stateChanged(ConnectionState state);
 };
 
 #endif /* defined(__Doodler__DrawingCanvas__) */

@@ -7,6 +7,7 @@
 //
 
 #include "Lobby.h"
+#include "DrawingCanvas.h"
 
 using namespace cocos2d;
 
@@ -47,6 +48,20 @@ void Lobby::setupMenu()
     this->addChild(findMatchButton);    
 }
 
+void Lobby::loadDrawingScene()
+{
+    auto scene = Scene::create();
+    
+    DrawingCanvas* drawingCanvas = DrawingCanvas::create();
+    
+    scene->addChild(drawingCanvas);
+    
+    Director::getInstance()->pushScene(scene);
+}
+
+#pragma mark -
+#pragma mark UI Methods
+
 void Lobby::findMatchPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
@@ -77,6 +92,7 @@ void Lobby::stateChanged(ConnectionState state)
             
         case ConnectionState::CONNECTED:
             connectionLabel->setString("Connected!");
+            this->loadDrawingScene();
             break;
     }
 }

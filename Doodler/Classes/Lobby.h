@@ -27,9 +27,13 @@ public:
 private:
     cocos2d::ui::Text* connectionLabel;
     
+    void loadDrawingScene();
+    
+    // NetworkingDelegate methods
     void receivedData(const void* data);
     void stateChanged(ConnectionState state);
     
+    // UI Methods
     void findMatchPressed(Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };
 
