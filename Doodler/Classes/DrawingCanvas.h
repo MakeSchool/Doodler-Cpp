@@ -13,7 +13,7 @@
 #include "CocosGUI.h"
 #include "NetworkingWrapper.h"
 
-class DrawingCanvas : public cocos2d::Node//, NetworkingDelegate
+class DrawingCanvas : public cocos2d::Node, NetworkingDelegate
 {
 public:
     CREATE_FUNC(DrawingCanvas);
@@ -32,7 +32,7 @@ protected:
     void sendStrokeOverNetwork(cocos2d::Vec2 startPoint, cocos2d::Vec2 endPoint, float radius, cocos2d::Color4F color);
     
     // NetworkingWrapper Methods
-    void receivedData(const void* data);
+    void receivedData(const void* data, unsigned long length);
     void stateChanged(ConnectionState state);
 };
 

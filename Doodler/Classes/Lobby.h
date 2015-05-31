@@ -30,7 +30,7 @@ private:
     void loadDrawingScene();
     
     // NetworkingDelegate methods
-    void receivedData(const void* data);
+    void receivedData(const void* data, unsigned long length);
     void stateChanged(ConnectionState state);
     
     // UI Methods

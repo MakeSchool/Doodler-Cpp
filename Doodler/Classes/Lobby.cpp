@@ -73,7 +73,7 @@ void Lobby::findMatchPressed(Ref* pSender, ui::Widget::TouchEventType eEventType
 #pragma mark -
 #pragma mark NetworkingWrapper Delegate
 
-void Lobby::receivedData(const void* data)
+void Lobby::receivedData(const void* data, unsigned long length)
 {
     
 }

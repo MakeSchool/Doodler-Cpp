@@ -22,7 +22,7 @@ typedef struct objc_object NetworkManager;
 class NetworkingDelegate
 {
 public:
-    virtual void receivedData(const void* data) = 0;
+    virtual void receivedData(const void* data, unsigned long length) = 0;
     virtual void stateChanged(ConnectionState state) = 0;
 };
 
@@ -44,7 +44,7 @@ private:
     NetworkingWrapper();
     ~NetworkingWrapper();
     
-    void receivedData(const void* data);
+    void receivedData(const void* data, unsigned long length);
     void stateChanged(ConnectionState state);
 };
 

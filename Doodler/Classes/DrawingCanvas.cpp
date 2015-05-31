@@ -42,6 +42,8 @@ void DrawingCanvas::onEnter()
     
     this->setupMenus();
     this->setupTouchHandling();
+    
+    NetworkingWrapper::getInstance()->setDelegate(this);
 }
 
 void DrawingCanvas::setupMenus()
@@ -137,4 +139,26 @@ void DrawingCanvas::sendStrokeOverNetwork(Vec2 startPoint, Vec2 endPoint, float 
     NetworkingWrapper::getInstance()->sendData(buffer.GetString(), buffer.Size());
     
 //    CCLOG("%s", buffer.GetString());
+}
+
+void DrawingCanvas::receivedData(const void* data, unsigned long length)
+{
+    rapidjson::Document document;
+    const char* cstr = reinterpret_cast<const char*>(data);
+    document.Parse<0>(cstr);
+    
+    rapidjson::Value& startPoint = document["startPoint"];
+    rapidjson::Value& endPoint = document["endPoint"];
+    rapidjson::Value& color = document["color"];
+    
+    Vec2 startVec = Vec2(startPoint["x"].GetDouble(), startPoint["y"].GetDouble());
+    Vec2 endVec = Vec2(endPoint["x"].GetDouble(), endPoint["y"].GetDouble());
+    float radius = document["radius"].GetDouble();
+    
+    drawNode->drawSegment(startVec, endVec, radius, Color4F(0.0f, 0.0f, 1.0f, 1.0f));
+}
+
+void DrawingCanvas::stateChanged(ConnectionState state)
+{
+    
 }

@@ -326,11 +326,7 @@
 				65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */,
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
-				65A71D801B151C5600B5E61E /* NetworkManagerDelegate.h */,
-				65A71D731B13015800B5E61E /* NetworkManager.h */,
-				65A71D741B13015800B5E61E /* NetworkManager.mm */,
-				65A71D7C1B13A27600B5E61E /* NetworkingWrapper.h */,
-				65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */,
+				65A71D831B1A864300B5E61E /* Networking */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -382,6 +378,18 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		65A71D831B1A864300B5E61E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				65A71D801B151C5600B5E61E /* NetworkManagerDelegate.h */,
+				65A71D731B13015800B5E61E /* NetworkManager.h */,
+				65A71D741B13015800B5E61E /* NetworkManager.mm */,
+				65A71D7C1B13A27600B5E61E /* NetworkingWrapper.h */,
+				65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 

@@ -59,11 +59,11 @@ void NetworkingWrapper::sendData(const void *data, unsigned long length)
 #pragma mark -
 #pragma mark NetworkManager Delegate Methods
 
-void NetworkingWrapper::receivedData(const void *data)
+void NetworkingWrapper::receivedData(const void *data, unsigned long length)
 {
     if (this->delegate)
     {
-        this->delegate->receivedData(data);
+        this->delegate->receivedData(data, length);
     }
 }
 

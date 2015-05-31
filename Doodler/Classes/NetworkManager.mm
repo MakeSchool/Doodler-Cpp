@@ -164,7 +164,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_delegate)
         {
-            _delegate->receivedData(data.bytes);
+            _delegate->receivedData(data.bytes, data.length);
         }
     });
 }
