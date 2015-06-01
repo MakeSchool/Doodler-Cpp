@@ -11,6 +11,7 @@
 #include "json/writer.h"
 #include "json/stringbuffer.h"
 #include "NetworkingWrapper.h"
+#include "Constants.h"
 
 using namespace cocos2d;
 
@@ -22,7 +23,7 @@ bool DrawingCanvas::init()
     }
     
     drawNode = DrawNode::create();
-    background = LayerColor::create(Color4B(245, 241, 240, 255));
+    background = LayerColor::create(Color4B(COLOR_WHITE));
     
     this->addChild(background);
     this->addChild(drawNode);

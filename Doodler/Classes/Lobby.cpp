@@ -8,6 +8,7 @@
 
 #include "Lobby.h"
 #include "DrawingCanvas.h"
+#include "Constants.h"
 
 using namespace cocos2d;
 
@@ -17,6 +18,9 @@ bool Lobby::init()
     {
         return false;
     }
+    
+    LayerColor* background = LayerColor::create(Color4B(COLOR_WHITE));
+    this->addChild(background);
     
     return true;
 }
@@ -42,7 +46,8 @@ void Lobby::setupMenu()
     findMatchButton->addTouchEventListener(CC_CALLBACK_2(Lobby::findMatchPressed, this));
     
     connectionLabel = ui::Text::create("Not Connected", "Helvetica", 36.0f);
-    connectionLabel->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+    connectionLabel->setColor(Color3B(COLOR_BLACK));
+    connectionLabel->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 10.0f));
     
     this->addChild(connectionLabel);
     this->addChild(findMatchButton);    
