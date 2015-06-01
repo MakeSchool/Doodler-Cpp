@@ -22,7 +22,7 @@ bool DrawingCanvas::init()
     }
     
     drawNode = DrawNode::create();
-    background = LayerColor::create(Color4B(255, 255, 255, 255));
+    background = LayerColor::create(Color4B(245, 241, 240, 255));
     
     this->addChild(background);
     this->addChild(drawNode);
