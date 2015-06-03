@@ -7,11 +7,9 @@
 //
 
 #include "DrawingCanvas.h"
-#include "json/document.h"
-#include "json/writer.h"
-#include "json/stringbuffer.h"
 #include "Constants.h"
 #include "SceneManager.h"
+#include "JSONPacker.h"
 
 using namespace cocos2d;
 
@@ -161,25 +159,12 @@ void DrawingCanvas::setNetworkedSession(bool networkedSession)
 
 void DrawingCanvas::receivedData(const void* data, unsigned long length)
 {
-    rapidjson::Document document;
     const char* cstr = reinterpret_cast<const char*>(data);
-    document.Parse<0>(cstr);
+    std::string json = std::string(cstr, length);
     
-    rapidjson::Value& startDoc = document["startPoint"];
-    rapidjson::Value& endDoc = document["endPoint"];
-    rapidjson::Value& colorDoc = document["color"];
+    JSONPacker::LineData lineData = JSONPacker::unpackLineDataJSON(json);
     
-    Vec2 start = Vec2(startDoc["x"].GetDouble(), startDoc["y"].GetDouble());
-    Vec2 end = Vec2(endDoc["x"].GetDouble(), endDoc["y"].GetDouble());
-    float radius = document["radius"].GetDouble();
-    
-    float r = colorDoc["r"].GetDouble();
-    float g = colorDoc["g"].GetDouble();
-    float b = colorDoc["b"].GetDouble();
-    float a = colorDoc["a"].GetDouble();
-    Color4F color = Color4F(r, g, b, a);
-    
-    drawNode->drawSegment(start, end, radius, color);
+    drawNode->drawSegment(lineData.startPoint, lineData.endPoint, lineData.radius, lineData.color);
 }
 
 #pragma mark -
@@ -236,34 +221,13 @@ void DrawingCanvas::colorChangePressed(Ref *pSender, ::ui::Widget::TouchEventTyp
 
 void DrawingCanvas::sendStrokeOverNetwork(Vec2 startPoint, Vec2 endPoint, float radius, Color4F color)
 {
-    rapidjson::Document document;
-    document.SetObject();
-    rapidjson::Value object(rapidjson::kObjectType);
+    JSONPacker::LineData lineData;
+    lineData.startPoint = startPoint;
+    lineData.endPoint = endPoint;
+    lineData.radius = radius;
+    lineData.color = color;
     
-    rapidjson::Value startPt(rapidjson::kObjectType);
-    startPt.AddMember("x", startPoint.x, document.GetAllocator());
-    startPt.AddMember("y", startPoint.y, document.GetAllocator());
+    std::string json = JSONPacker::packLineData(lineData);
     
-    rapidjson::Value endPt(rapidjson::kObjectType);
-    endPt.AddMember("x", endPoint.x, document.GetAllocator());
-    endPt.AddMember("y", endPoint.y, document.GetAllocator());
-    
-    rapidjson::Value lineColor(rapidjson::kObjectType);
-    lineColor.AddMember("r", color.r, document.GetAllocator());
-    lineColor.AddMember("g", color.g, document.GetAllocator());
-    lineColor.AddMember("b", color.b, document.GetAllocator());
-    lineColor.AddMember("a", color.a, document.GetAllocator());
-    
-    document.AddMember("startPoint", startPt, document.GetAllocator());
-    document.AddMember("endPoint", endPt, document.GetAllocator());
-    document.AddMember("radius", radius, document.GetAllocator());
-    document.AddMember("color", lineColor, document.GetAllocator());
-    
-    rapidjson::StringBuffer buffer;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-    document.Accept(writer);
-    
-    SceneManager::getInstance()->sendData(buffer.GetString(), buffer.Size());
-    
-//    CCLOG("%s", buffer.GetString());
+    SceneManager::getInstance()->sendData(json.c_str(), json.length());
 }

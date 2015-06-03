@@ -59,6 +59,8 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		6518F8891B1EC73700CB4833 /* JSONPacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6518F8871B1EC73700CB4833 /* JSONPacker.cpp */; };
+		6518F88A1B1EC73700CB4833 /* JSONPacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6518F8871B1EC73700CB4833 /* JSONPacker.cpp */; };
 		65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
 		65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
 		65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
@@ -163,6 +165,8 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		6518F8871B1EC73700CB4833 /* JSONPacker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONPacker.cpp; sourceTree = "<group>"; };
+		6518F8881B1EC73700CB4833 /* JSONPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONPacker.h; sourceTree = "<group>"; };
 		65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingCanvas.cpp; sourceTree = "<group>"; };
 		65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCanvas.h; sourceTree = "<group>"; };
 		65A71D611B10369D00B5E61E /* Lobby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lobby.cpp; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */,
 				65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */,
+				6518F8871B1EC73700CB4833 /* JSONPacker.cpp */,
+				6518F8881B1EC73700CB4833 /* JSONPacker.h */,
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
 				65A71D851B1EA79400B5E61E /* SceneManager.cpp */,
@@ -547,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65A71D751B13015800B5E61E /* NetworkManager.mm in Sources */,
+				6518F8891B1EC73700CB4833 /* JSONPacker.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
@@ -565,6 +572,7 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				6518F88A1B1EC73700CB4833 /* JSONPacker.cpp in Sources */,
 				65A71D881B1EA79400B5E61E /* SceneManager.cpp in Sources */,
 				65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				65A71D7E1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */,
