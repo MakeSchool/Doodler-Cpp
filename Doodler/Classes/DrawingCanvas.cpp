@@ -54,10 +54,21 @@ void DrawingCanvas::setupMenus()
     ui::Button* clearButton = ui::Button::create();
     clearButton->setAnchorPoint(Vec2(1.0f, 1.0f));
     clearButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
-    clearButton->setTouchEnabled(true);
-    clearButton->loadTextures("CloseNormal.png", "CloseSelected.png");
+    clearButton->loadTextures("clearButton.png", "clearButtonPressed.png");
     clearButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::clearPressed, this));
     this->addChild(clearButton);
+    
+    ui::Button* backButton = ui::Button::create();
+    backButton->setAnchorPoint(Vec2(0.0f, 1.0f));
+    backButton->setPosition(Vec2(0.0f, visibleSize.height));
+    backButton->loadTextures("backButton.png", "backButtonPressed.png");
+    this->addChild(backButton);
+    
+    ui::Button* colorButton = ui::Button::create();
+    colorButton->setAnchorPoint(Vec2(1.0f, 0.0f));
+    colorButton->setPosition(Vec2(visibleSize.width, 0.0f));
+    colorButton->loadTextures("colorSwatch.png", "colorSwatch.png");
+    this->addChild(colorButton);
 }
 
 void DrawingCanvas::setupTouchHandling()

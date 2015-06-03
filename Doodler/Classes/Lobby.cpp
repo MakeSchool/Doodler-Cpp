@@ -29,28 +29,38 @@ void Lobby::onEnter()
 {
     Node::onEnter();
     
-    this->setupMenu();
+    this->setupUI();
     
     NetworkingWrapper::getInstance()->setDelegate(this);
 }
 
-void Lobby::setupMenu()
+void Lobby::setupUI()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    ui::Button* findMatchButton = ui::Button::create();
-    findMatchButton->setAnchorPoint(Vec2(1.0f, 1.0f));
-    findMatchButton->setPosition(Vec2(visibleSize.width, visibleSize.height));
-    findMatchButton->setTouchEnabled(true);
-    findMatchButton->loadTextures("CloseNormal.png", "CloseSelected.png");
-    findMatchButton->addTouchEventListener(CC_CALLBACK_2(Lobby::findMatchPressed, this));
+    ui::Button* soloButton = ui::Button::create();
+    soloButton->setAnchorPoint(Vec2(0.5f, 0.5f));
+    soloButton->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.4f));
+    soloButton->loadTextures("soloButton.png", "soloButtonPressed.png");
+    this->addChild(soloButton);
+    
+    ui::Button* duoButton = ui::Button::create();
+    duoButton->setAnchorPoint(Vec2(0.5f, 0.5f));
+    duoButton->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.25f));
+    duoButton->loadTextures("duoButton.png", "duoButtonPressed.png");
+    duoButton->addTouchEventListener(CC_CALLBACK_2(Lobby::findMatchPressed, this));
+    this->addChild(duoButton);
+    
+    Sprite* logo = Sprite::create("doodlerLogo.png");
+    logo->setAnchorPoint(Vec2(0.5f, 0.5f));
+    logo->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.75f));
+    this->addChild(logo);
     
     connectionLabel = ui::Text::create("Not Connected", "Helvetica", 36.0f);
     connectionLabel->setColor(Color3B(COLOR_BLACK));
     connectionLabel->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 10.0f));
     
     this->addChild(connectionLabel);
-    this->addChild(findMatchButton);    
 }
 
 void Lobby::loadDrawingScene()

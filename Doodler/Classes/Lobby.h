@@ -22,7 +22,7 @@ public:
     
     void onEnter() override;
     
-    void setupMenu();
+    void setupUI();
     
 private:
     cocos2d::ui::Text* connectionLabel;
