@@ -44,6 +44,11 @@ void NetworkingWrapper::sendData(const void *data, unsigned long length)
     [this->networkManager sendData:dataToSend];
 }
 
+void NetworkingWrapper::disconnect()
+{
+    [this->networkManager disconnect];
+}
+
 #pragma mark -
 #pragma mark NetworkManager Delegate Methods
 

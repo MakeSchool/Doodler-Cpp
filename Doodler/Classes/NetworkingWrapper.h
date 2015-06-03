@@ -38,7 +38,7 @@ public:
     
     void sendData(const void* data, unsigned long length);
     
-    // TODO: Disconnect
+    void disconnect();
     
 private:
     NetworkManager* networkManager;

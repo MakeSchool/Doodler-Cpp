@@ -21,4 +21,6 @@ class NetworkManagerDelegate;
 
 - (void)sendData:(NSData*)data;
 
+- (void)disconnect;
+
 @end

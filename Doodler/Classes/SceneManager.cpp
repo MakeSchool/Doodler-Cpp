@@ -59,6 +59,7 @@ void SceneManager::returnToLobby()
     {
         Director::getInstance()->popScene();
         drawingCanvas = nullptr;
+        networkingWrapper->disconnect();
     }
 }
 
