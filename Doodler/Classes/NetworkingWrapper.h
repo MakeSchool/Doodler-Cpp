@@ -29,7 +29,8 @@ public:
 class NetworkingWrapper : public NetworkManagerDelegate
 {
 public:
-    static NetworkingWrapper* getInstance();
+    NetworkingWrapper();
+    ~NetworkingWrapper();
     
     void setDelegate(NetworkingDelegate* delegate);
     
@@ -37,12 +38,11 @@ public:
     
     void sendData(const void* data, unsigned long length);
     
+    // TODO: Disconnect
+    
 private:
     NetworkManager* networkManager;
     NetworkingDelegate* delegate;
-    
-    NetworkingWrapper();
-    ~NetworkingWrapper();
     
     void receivedData(const void* data, unsigned long length);
     void stateChanged(ConnectionState state);

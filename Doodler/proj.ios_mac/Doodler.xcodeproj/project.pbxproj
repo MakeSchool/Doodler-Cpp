@@ -69,6 +69,8 @@
 		65A71D7A1B1301FD00B5E61E /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.mm */; };
 		65A71D7D1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */; };
 		65A71D7E1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D7B1B13A27600B5E61E /* NetworkingWrapper.mm */; };
+		65A71D871B1EA79400B5E61E /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D851B1EA79400B5E61E /* SceneManager.cpp */; };
+		65A71D881B1EA79400B5E61E /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D851B1EA79400B5E61E /* SceneManager.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -173,6 +175,8 @@
 		65A71D7C1B13A27600B5E61E /* NetworkingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingWrapper.h; sourceTree = "<group>"; };
 		65A71D801B151C5600B5E61E /* NetworkManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManagerDelegate.h; sourceTree = "<group>"; };
 		65A71D841B1CE91C00B5E61E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		65A71D851B1EA79400B5E61E /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		65A71D861B1EA79400B5E61E /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -324,6 +328,8 @@
 				65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */,
 				65A71D611B10369D00B5E61E /* Lobby.cpp */,
 				65A71D621B10369D00B5E61E /* Lobby.h */,
+				65A71D851B1EA79400B5E61E /* SceneManager.cpp */,
+				65A71D861B1EA79400B5E61E /* SceneManager.h */,
 				65A71D831B1A864300B5E61E /* Networking */,
 			);
 			name = Classes;
@@ -544,6 +550,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
+				65A71D871B1EA79400B5E61E /* SceneManager.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
@@ -558,6 +565,7 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				65A71D881B1EA79400B5E61E /* SceneManager.cpp in Sources */,
 				65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */,
 				65A71D7E1B13A27600B5E61E /* NetworkingWrapper.mm in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,

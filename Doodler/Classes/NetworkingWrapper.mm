@@ -9,20 +9,8 @@
 #include "NetworkingWrapper.h"
 #include "NetworkManager.h"
 
-static NetworkingWrapper* sharedNetworkingWrapper = nullptr;
-
 #pragma mark -
 #pragma mark Lifecycle
-
-NetworkingWrapper* NetworkingWrapper::getInstance()
-{
-    if (! sharedNetworkingWrapper)
-    {
-        sharedNetworkingWrapper = new NetworkingWrapper();
-    }
-    
-    return sharedNetworkingWrapper;
-}
 
 NetworkingWrapper::NetworkingWrapper()
 {

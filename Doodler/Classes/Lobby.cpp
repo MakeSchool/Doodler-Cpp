@@ -9,8 +9,12 @@
 #include "Lobby.h"
 #include "DrawingCanvas.h"
 #include "Constants.h"
+#include "SceneManager.h"
 
 using namespace cocos2d;
+
+#pragma mark -
+#pragma mark Lifecycle
 
 bool Lobby::init()
 {
@@ -30,8 +34,6 @@ void Lobby::onEnter()
     Node::onEnter();
     
     this->setupUI();
-    
-    NetworkingWrapper::getInstance()->setDelegate(this);
 }
 
 void Lobby::setupUI()
@@ -42,13 +44,14 @@ void Lobby::setupUI()
     soloButton->setAnchorPoint(Vec2(0.5f, 0.5f));
     soloButton->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.4f));
     soloButton->loadTextures("soloButton.png", "soloButtonPressed.png");
+    soloButton->addTouchEventListener(CC_CALLBACK_2(Lobby::soloPressed, this));
     this->addChild(soloButton);
     
     ui::Button* duoButton = ui::Button::create();
     duoButton->setAnchorPoint(Vec2(0.5f, 0.5f));
     duoButton->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.25f));
     duoButton->loadTextures("duoButton.png", "duoButtonPressed.png");
-    duoButton->addTouchEventListener(CC_CALLBACK_2(Lobby::findMatchPressed, this));
+    duoButton->addTouchEventListener(CC_CALLBACK_2(Lobby::duoPressed, this));
     this->addChild(duoButton);
     
     Sprite* logo = Sprite::create("doodlerLogo.png");
@@ -63,51 +66,21 @@ void Lobby::setupUI()
     this->addChild(connectionLabel);
 }
 
-void Lobby::loadDrawingScene()
-{
-    auto scene = Scene::create();
-    
-    DrawingCanvas* drawingCanvas = DrawingCanvas::create();
-    
-    scene->addChild(drawingCanvas);
-    
-    Director::getInstance()->pushScene(scene);
-}
-
 #pragma mark -
 #pragma mark UI Methods
 
-void Lobby::findMatchPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
+void Lobby::soloPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
-        NetworkingWrapper::getInstance()->attemptToJoinGame();
+        SceneManager::getInstance()->enterSoloGame();
     }
 }
 
-#pragma mark -
-#pragma mark NetworkingWrapper Delegate
-
-void Lobby::receivedData(const void* data, unsigned long length)
+void Lobby::duoPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
-    
-}
-
-void Lobby::stateChanged(ConnectionState state)
-{
-    switch (state)
+    if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
-        case ConnectionState::NOT_CONNECTED:
-            connectionLabel->setString("Not Connected");
-            break;
-            
-        case ConnectionState::CONNECTING:
-            connectionLabel->setString("Connecting...");
-            break;
-            
-        case ConnectionState::CONNECTED:
-            connectionLabel->setString("Connected!");
-            this->loadDrawingScene();
-            break;
+        SceneManager::getInstance()->connectAndEnterNetworkedGame();
     }
 }

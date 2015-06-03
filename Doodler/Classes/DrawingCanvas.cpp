@@ -10,10 +10,13 @@
 #include "json/document.h"
 #include "json/writer.h"
 #include "json/stringbuffer.h"
-#include "NetworkingWrapper.h"
 #include "Constants.h"
+#include "SceneManager.h"
 
 using namespace cocos2d;
+
+#pragma mark -
+#pragma mark Lifecycle
 
 bool DrawingCanvas::init()
 {
@@ -21,6 +24,8 @@ bool DrawingCanvas::init()
     {
         return false;
     }
+
+    this->setNetworkedSession(false);
     
     drawNode = DrawNode::create();
     background = LayerColor::create(Color4B(COLOR_WHITE));
@@ -44,8 +49,6 @@ void DrawingCanvas::onEnter()
     
     this->setupMenus();
     this->setupTouchHandling();
-    
-    NetworkingWrapper::getInstance()->setDelegate(this);
 }
 
 void DrawingCanvas::setupMenus()
@@ -63,6 +66,7 @@ void DrawingCanvas::setupMenus()
     backButton->setAnchorPoint(Vec2(0.0f, 1.0f));
     backButton->setPosition(Vec2(0.0f, visibleSize.height));
     backButton->loadTextures("backButton.png", "backButtonPressed.png");
+    backButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::backButtonPressed, this));
     this->addChild(backButton);
     
     check = Sprite::create("checkMark.png");
@@ -135,7 +139,10 @@ void DrawingCanvas::setupTouchHandling()
         
         drawNode->drawSegment(lastTouchPos, touchPos, radius, selectedColor);
         
-        this->sendStrokeOverNetwork(lastTouchPos, touchPos, radius, selectedColor);
+        if (this->networkedSession)
+        {
+            this->sendStrokeOverNetwork(lastTouchPos, touchPos, radius, selectedColor);
+        }
         
         lastRadius = radius;
         lastTouchPos = touchPos;
@@ -144,11 +151,53 @@ void DrawingCanvas::setupTouchHandling()
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 }
 
+#pragma mark -
+#pragma mark Public Methods
+
+void DrawingCanvas::setNetworkedSession(bool networkedSession)
+{
+    this->networkedSession = networkedSession;
+}
+
+void DrawingCanvas::receivedData(const void* data, unsigned long length)
+{
+    rapidjson::Document document;
+    const char* cstr = reinterpret_cast<const char*>(data);
+    document.Parse<0>(cstr);
+    
+    rapidjson::Value& startDoc = document["startPoint"];
+    rapidjson::Value& endDoc = document["endPoint"];
+    rapidjson::Value& colorDoc = document["color"];
+    
+    Vec2 start = Vec2(startDoc["x"].GetDouble(), startDoc["y"].GetDouble());
+    Vec2 end = Vec2(endDoc["x"].GetDouble(), endDoc["y"].GetDouble());
+    float radius = document["radius"].GetDouble();
+    
+    float r = colorDoc["r"].GetDouble();
+    float g = colorDoc["g"].GetDouble();
+    float b = colorDoc["b"].GetDouble();
+    float a = colorDoc["a"].GetDouble();
+    Color4F color = Color4F(r, g, b, a);
+    
+    drawNode->drawSegment(start, end, radius, color);
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
 void DrawingCanvas::clearPressed(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
         drawNode->clear();
+    }
+}
+
+void DrawingCanvas::backButtonPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType)
+{
+    if (eEventType == ui::Widget::TouchEventType::ENDED)
+    {
+        SceneManager::getInstance()->returnToLobby();
     }
 }
 
@@ -214,35 +263,7 @@ void DrawingCanvas::sendStrokeOverNetwork(Vec2 startPoint, Vec2 endPoint, float 
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     document.Accept(writer);
     
-    NetworkingWrapper::getInstance()->sendData(buffer.GetString(), buffer.Size());
+    SceneManager::getInstance()->sendData(buffer.GetString(), buffer.Size());
     
 //    CCLOG("%s", buffer.GetString());
-}
-
-void DrawingCanvas::receivedData(const void* data, unsigned long length)
-{
-    rapidjson::Document document;
-    const char* cstr = reinterpret_cast<const char*>(data);
-    document.Parse<0>(cstr);
-    
-    rapidjson::Value& startDoc = document["startPoint"];
-    rapidjson::Value& endDoc = document["endPoint"];
-    rapidjson::Value& colorDoc = document["color"];
-    
-    Vec2 start = Vec2(startDoc["x"].GetDouble(), startDoc["y"].GetDouble());
-    Vec2 end = Vec2(endDoc["x"].GetDouble(), endDoc["y"].GetDouble());
-    float radius = document["radius"].GetDouble();
-    
-    float r = colorDoc["r"].GetDouble();
-    float g = colorDoc["g"].GetDouble();
-    float b = colorDoc["b"].GetDouble();
-    float a = colorDoc["a"].GetDouble();
-    Color4F color = Color4F(r, g, b, a);
-    
-    drawNode->drawSegment(start, end, radius, color);
-}
-
-void DrawingCanvas::stateChanged(ConnectionState state)
-{
-    
 }

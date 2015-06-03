@@ -29,8 +29,7 @@ bool HelloWorld::init()
         return false;
     }
     
-//    Lobby* lobby = Lobby::create();
-    DrawingCanvas* lobby = DrawingCanvas::create();
+    Lobby* lobby = Lobby::create();
     
     lobby->setAnchorPoint(Vec2(0.0f, 0.0f));
     lobby->setPosition(Vec2(0.0f, 0.0f));

@@ -13,28 +13,19 @@
 #include "CocosGUI.h"
 #include "NetworkingWrapper.h"
 
-class Lobby : public cocos2d::Node, NetworkingDelegate
+class Lobby : public cocos2d::Node
 {
 public:
     CREATE_FUNC(Lobby);
     
-    bool init() override;
-    
-    void onEnter() override;
-    
-    void setupUI();
-    
 private:
     cocos2d::ui::Text* connectionLabel;
     
-    void loadDrawingScene();
-    
-    // NetworkingDelegate methods
-    void receivedData(const void* data, unsigned long length);
-    void stateChanged(ConnectionState state);
-    
-    // UI Methods
-    void findMatchPressed(Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    bool init() override;
+    void onEnter() override;
+    void setupUI();
+    void soloPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void duoPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };
 
 #endif /* defined(__Doodler__Lobby__) */
