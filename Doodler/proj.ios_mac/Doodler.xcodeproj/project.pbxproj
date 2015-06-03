@@ -61,7 +61,6 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		65A71D5D1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
 		65A71D5E1B0C1A0300B5E61E /* DrawingCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */; };
-		65A71D601B1035F300B5E61E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A71D5F1B1035F200B5E61E /* GameKit.framework */; };
 		65A71D631B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
 		65A71D641B10369D00B5E61E /* Lobby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D611B10369D00B5E61E /* Lobby.cpp */; };
 		65A71D751B13015800B5E61E /* NetworkManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A71D741B13015800B5E61E /* NetworkManager.mm */; };
@@ -164,7 +163,6 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		65A71D5B1B0C1A0300B5E61E /* DrawingCanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawingCanvas.cpp; sourceTree = "<group>"; };
 		65A71D5C1B0C1A0300B5E61E /* DrawingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingCanvas.h; sourceTree = "<group>"; };
-		65A71D5F1B1035F200B5E61E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		65A71D611B10369D00B5E61E /* Lobby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lobby.cpp; sourceTree = "<group>"; };
 		65A71D621B10369D00B5E61E /* Lobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lobby.h; sourceTree = "<group>"; };
 		65A71D731B13015800B5E61E /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				65A71D601B1035F300B5E61E /* GameKit.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
@@ -281,7 +278,6 @@
 			children = (
 				65A71D781B1301C300B5E61E /* MultipeerConnectivity.framework */,
 				65A71D761B1301B900B5E61E /* MultipeerConnectivity.framework */,
-				65A71D5F1B1035F200B5E61E /* GameKit.framework */,
 				8262943D1AAF051F00CB7CF7 /* Security.framework */,
 				52B47A461A53D09B004E4C60 /* Security.framework */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
@@ -444,7 +440,7 @@
 						DevelopmentTeam = 2WY2RL36Z6;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
