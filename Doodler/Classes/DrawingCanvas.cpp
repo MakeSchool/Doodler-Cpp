@@ -24,6 +24,7 @@ bool DrawingCanvas::init()
     
     drawNode = DrawNode::create();
     background = LayerColor::create(Color4B(COLOR_WHITE));
+    selectedColor = COLOR_GREEN;
     
     this->addChild(background);
     this->addChild(drawNode);
@@ -64,11 +65,43 @@ void DrawingCanvas::setupMenus()
     backButton->loadTextures("backButton.png", "backButtonPressed.png");
     this->addChild(backButton);
     
-    ui::Button* colorButton = ui::Button::create();
-    colorButton->setAnchorPoint(Vec2(1.0f, 0.0f));
-    colorButton->setPosition(Vec2(visibleSize.width, 0.0f));
-    colorButton->loadTextures("colorSwatch.png", "colorSwatch.png");
-    this->addChild(colorButton);
+    check = Sprite::create("checkMark.png");
+    check->setAnchorPoint(Vec2(0.5f, 0.5f));
+    check->setNormalizedPosition(Vec2(0.5f, 0.5f));
+    
+    Node* colorButtonLayout = Node::create();
+    colorButtonLayout->setContentSize(Size(visibleSize.width, visibleSize.height * 0.2f));
+    colorButtonLayout->setAnchorPoint(Vec2(0.5f, 0.0f));
+    colorButtonLayout->setPosition(Vec2(visibleSize.width / 2.0f, 0.0f));
+    this->addChild(colorButtonLayout);
+    
+    for (int i = 1; i <= 5; ++i)
+    {
+        ui::Button* colorButton = ui::Button::create();
+        colorButton->setAnchorPoint(Vec2(0.5f, 0.0f));
+        colorButton->setPosition(Vec2(visibleSize.width * (i * 0.16666f), 0.0f));
+        colorButton->loadTextures("colorSwatch.png", "colorSwatch.png");
+        colorButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::colorChangePressed, this));
+        
+        Color4F buttonColor;
+        
+        switch (i)
+        {
+            case 1: buttonColor = COLOR_RED; break;
+            case 2: buttonColor = COLOR_YELLOW; break;
+            case 3: buttonColor = COLOR_GREEN; break;
+            case 4: buttonColor = COLOR_BLUE; break;
+            case 5: buttonColor = COLOR_PURPLE; break;
+        }
+        
+        if (buttonColor == COLOR_GREEN)
+        {
+            colorButton->addChild(check);
+        }
+        
+        colorButton->setColor(Color3B(buttonColor));
+        colorButtonLayout->addChild(colorButton);
+    }
 }
 
 void DrawingCanvas::setupTouchHandling()
@@ -100,9 +133,9 @@ void DrawingCanvas::setupTouchHandling()
         float alpha = dt / (rc + dt);
         radius = (alpha * distance) + (1.0f - alpha) * lastRadius;
         
-        drawNode->drawSegment(lastTouchPos, touchPos, radius, Color4F(0.2f, 0.2f, 0.2f, 1.0f));
+        drawNode->drawSegment(lastTouchPos, touchPos, radius, selectedColor);
         
-        this->sendStrokeOverNetwork(lastTouchPos, touchPos, radius, Color4F(0.2f, 0.2f, 0.2f, 1.0f));
+        this->sendStrokeOverNetwork(lastTouchPos, touchPos, radius, selectedColor);
         
         lastRadius = radius;
         lastTouchPos = touchPos;
@@ -116,6 +149,39 @@ void DrawingCanvas::clearPressed(Ref* pSender, ui::Widget::TouchEventType eEvent
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
         drawNode->clear();
+    }
+}
+
+void DrawingCanvas::colorChangePressed(Ref *pSender, ::ui::Widget::TouchEventType eEventType)
+{
+    ui::Button* pressedButton = static_cast<ui::Button*>(pSender);
+    
+    switch (eEventType)
+    {
+        case ui::Widget::TouchEventType::BEGAN:
+            pressedButton->setScale(0.85f);
+            break;
+            
+        case ui::Widget::TouchEventType::MOVED:
+            break;
+            
+        case ui::Widget::TouchEventType::CANCELED:
+            pressedButton->setScale(1.0f);
+            break;
+            
+        case ui::Widget::TouchEventType::ENDED:
+            
+            Color3B pressedColor = pressedButton->getColor();
+            selectedColor = Color4F(pressedColor);
+            
+            // Reposition checkmark
+            check->retain();
+            check->removeFromParent();
+            pressedButton->addChild(check);
+            check->release();
+            
+            pressedButton->setScale(1.0f);
+            break;
     }
 }
 
@@ -159,15 +225,21 @@ void DrawingCanvas::receivedData(const void* data, unsigned long length)
     const char* cstr = reinterpret_cast<const char*>(data);
     document.Parse<0>(cstr);
     
-    rapidjson::Value& startPoint = document["startPoint"];
-    rapidjson::Value& endPoint = document["endPoint"];
-    rapidjson::Value& color = document["color"];
+    rapidjson::Value& startDoc = document["startPoint"];
+    rapidjson::Value& endDoc = document["endPoint"];
+    rapidjson::Value& colorDoc = document["color"];
     
-    Vec2 startVec = Vec2(startPoint["x"].GetDouble(), startPoint["y"].GetDouble());
-    Vec2 endVec = Vec2(endPoint["x"].GetDouble(), endPoint["y"].GetDouble());
+    Vec2 start = Vec2(startDoc["x"].GetDouble(), startDoc["y"].GetDouble());
+    Vec2 end = Vec2(endDoc["x"].GetDouble(), endDoc["y"].GetDouble());
     float radius = document["radius"].GetDouble();
     
-    drawNode->drawSegment(startVec, endVec, radius, Color4F(0.0f, 0.0f, 1.0f, 1.0f));
+    float r = colorDoc["r"].GetDouble();
+    float g = colorDoc["g"].GetDouble();
+    float b = colorDoc["b"].GetDouble();
+    float a = colorDoc["a"].GetDouble();
+    Color4F color = Color4F(r, g, b, a);
+    
+    drawNode->drawSegment(start, end, radius, color);
 }
 
 void DrawingCanvas::stateChanged(ConnectionState state)
