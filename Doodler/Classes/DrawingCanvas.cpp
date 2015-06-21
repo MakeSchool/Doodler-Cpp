@@ -39,7 +39,7 @@ void DrawingCanvas::onEnter()
 {
     Node::onEnter();
     
-    Size visibleSize = CCDirector::getInstance()->getVisibleSize();
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     
     this->setContentSize(visibleSize);
     drawNode->setContentSize(visibleSize);
