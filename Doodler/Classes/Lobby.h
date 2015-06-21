@@ -19,8 +19,6 @@ public:
     CREATE_FUNC(Lobby);
     
 private:
-    cocos2d::ui::Text* connectionLabel;
-    
     bool init() override;
     void onEnter() override;
     void setupUI();
