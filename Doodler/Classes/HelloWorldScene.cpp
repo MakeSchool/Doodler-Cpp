@@ -31,9 +31,6 @@ bool HelloWorld::init()
     
     Lobby* lobby = Lobby::create();
     
-    lobby->setAnchorPoint(Vec2(0.0f, 0.0f));
-    lobby->setPosition(Vec2(0.0f, 0.0f));
-    
     this->addChild(lobby);
     
     return true;
