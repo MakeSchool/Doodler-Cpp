@@ -111,12 +111,12 @@ void DrawingCanvas::setupTouchHandling()
     auto touchListener = EventListenerTouchOneByOne::create();
     
     static Vec2 lastTouchPos;
-    static float lastRadius = 2.0f;
+    static float lastRadius = INITIAL_RADIUS;
     
     touchListener->onTouchBegan = [&](Touch* touch, Event* event)
     {
         lastTouchPos = drawNode->convertTouchToNodeSpace(touch);
-        lastRadius = 2.0f;
+        lastRadius = INITIAL_RADIUS;
         return true;
     };
     
@@ -131,7 +131,7 @@ void DrawingCanvas::setupTouchHandling()
         
         //lowpass filter
         float dt = 1.0f / 60.0f;
-        float rc = 2.0f;
+        float rc = 1.0f;
         float alpha = dt / (rc + dt);
         radius = (alpha * distance) + (1.0f - alpha) * lastRadius;
         

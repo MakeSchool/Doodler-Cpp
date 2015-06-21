@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 
+static const float INITIAL_RADIUS = 4.0f;
+
 static const cocos2d::Color4F COLOR_PURPLE =  cocos2d::Color4F(134/255.0f, 103/255.0f, 172/255.0f, 1.0f);
 static const cocos2d::Color4F COLOR_BLUE   =  cocos2d::Color4F(101/255.0f, 174/255.0f, 195/255.0f, 1.0f);
 static const cocos2d::Color4F COLOR_GREEN  =  cocos2d::Color4F(115/255.0f, 200/255.0f, 175/255.0f, 1.0f);
