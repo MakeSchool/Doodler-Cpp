@@ -58,12 +58,6 @@ void Lobby::setupUI()
     logo->setAnchorPoint(Vec2(0.5f, 0.5f));
     logo->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height * 0.75f));
     this->addChild(logo);
-    
-    connectionLabel = ui::Text::create("Not Connected", "Helvetica", 36.0f);
-    connectionLabel->setColor(Color3B(COLOR_BLACK));
-    connectionLabel->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 10.0f));
-    
-    this->addChild(connectionLabel);
 }
 
 #pragma mark -
