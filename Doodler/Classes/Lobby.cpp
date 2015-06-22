@@ -64,7 +64,7 @@ void Lobby::setupUI()
 #pragma mark -
 #pragma mark UI Methods
 
-void Lobby::soloPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType)
+void Lobby::soloPressed(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
