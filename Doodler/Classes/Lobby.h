@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 #include "CocosGUI.h"
-#include "NetworkingWrapper.h"
+
 
 class Lobby : public cocos2d::Node
 {

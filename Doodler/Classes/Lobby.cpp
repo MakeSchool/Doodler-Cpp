@@ -10,6 +10,7 @@
 #include "DrawingCanvas.h"
 #include "Constants.h"
 #include "SceneManager.h"
+#include "NetworkingWrapper.h"
 
 using namespace cocos2d;
 
