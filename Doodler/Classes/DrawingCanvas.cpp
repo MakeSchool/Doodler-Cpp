@@ -64,7 +64,7 @@ void DrawingCanvas::setupMenus()
     backButton->setAnchorPoint(Vec2(0.0f, 1.0f));
     backButton->setPosition(Vec2(0.0f, visibleSize.height));
     backButton->loadTextures("backButton.png", "backButtonPressed.png");
-    backButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::backButtonPressed, this));
+    backButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::backPressed, this));
     this->addChild(backButton);
     
     check = Sprite::create("checkMark.png");
@@ -178,7 +178,7 @@ void DrawingCanvas::clearPressed(Ref* pSender, ui::Widget::TouchEventType eEvent
     }
 }
 
-void DrawingCanvas::backButtonPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType)
+void DrawingCanvas::backPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType)
 {
     if (eEventType == ui::Widget::TouchEventType::ENDED)
     {
