@@ -81,7 +81,7 @@ void DrawingCanvas::setupMenus()
     {
         ui::Button* colorButton = ui::Button::create();
         colorButton->setAnchorPoint(Vec2(0.5f, 0.0f));
-        colorButton->setPosition(Vec2(visibleSize.width * (i * 0.16666f), 0.0f));
+        colorButton->setPosition(Vec2(visibleSize.width * i * (1.0f/6.0f), 0.0f));
         colorButton->loadTextures("colorSwatch.png", "colorSwatch.png");
         colorButton->addTouchEventListener(CC_CALLBACK_2(DrawingCanvas::colorChangePressed, this));
         
@@ -98,7 +98,7 @@ void DrawingCanvas::setupMenus()
         
         if (buttonColor == COLOR_GREEN)
         {
-            colorButton->addChild(check);
+            colorButton->addChild(this->check);
         }
         
         colorButton->setColor(Color3B(buttonColor));
