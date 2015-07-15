@@ -126,14 +126,12 @@ void DrawingCanvas::setupTouchHandling()
         
         // Compute velocity, use velociy to affect segment radius
         float distance = lastTouchPos.distance(touchPos);
-        
-        float radius = MIN(24.0f, distance);
-        
+    
         //lowpass filter
         float dt = 1.0f / 60.0f;
         float rc = 1.0f;
         float alpha = dt / (rc + dt);
-        radius = (alpha * distance) + (1.0f - alpha) * lastRadius;
+        float radius = (alpha * distance) + (1.0f - alpha) * lastRadius;
         
         drawNode->drawSegment(lastTouchPos, touchPos, radius, selectedColor);
         
