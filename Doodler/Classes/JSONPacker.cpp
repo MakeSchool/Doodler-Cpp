@@ -16,7 +16,7 @@ using namespace cocos2d;
 namespace JSONPacker
 {
 
-LineData unpackLineDataJSON(std::string json)
+LineData unpackLineDataJSON(const std::string& json)
 {
     rapidjson::Document document;
     document.Parse<0>(json.c_str());
@@ -44,7 +44,7 @@ LineData unpackLineDataJSON(std::string json)
     return result;
 }
 
-std::string packLineData(const LineData lineData)
+std::string packLineData(const LineData& lineData)
 {
     rapidjson::Document document;
     document.SetObject();

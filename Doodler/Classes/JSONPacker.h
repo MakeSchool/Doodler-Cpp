@@ -22,8 +22,8 @@ struct LineData
     float radius;
 };
 
-LineData unpackLineDataJSON(std::string json);
-std::string packLineData(const LineData lineData);
+LineData unpackLineDataJSON(const std::string& json);
+std::string packLineData(const LineData& lineData);
 
 }
 
