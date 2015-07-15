@@ -141,8 +141,11 @@
             stateString = @"not connected to";
             // Auto rejoin?
             
-            [self disconnect];
-            [self attemptToJoinGame];
+            if ([self.peerID.displayName isEqualToString:peerID.displayName])
+            {
+                [self disconnect];
+                [self attemptToJoinGame];
+            }
             break;
     }
     
