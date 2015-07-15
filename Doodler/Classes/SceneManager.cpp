@@ -7,7 +7,6 @@
 //
 
 #include "SceneManager.h"
-#include "NetworkingWrapper.h"
 #include "DrawingCanvas.h"
 #include "cocos2d.h"
 

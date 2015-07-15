@@ -36,8 +36,8 @@ private:
     void loadDrawingScene(bool networked);
     
     // Networking Delegate methods
-    void receivedData(const void* data, unsigned long length);
-    void stateChanged(ConnectionState state);
+    void receivedData(const void* data, unsigned long length) override;
+    void stateChanged(ConnectionState state) override;
 };
 
 #endif /* defined(__Doodler__SceneManager__) */
